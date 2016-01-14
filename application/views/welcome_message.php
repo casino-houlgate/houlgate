@@ -63,7 +63,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </section>
     <!-- Your like button code -->
     <div class="fb-like"
-         data-href="<?php echo site_url('welcome') ?>"
+         data-href="<?php echo site_url() ?>"
          data-layout="standard"
          data-action="like"
          data-show-faces="true"
