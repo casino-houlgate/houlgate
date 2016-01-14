@@ -207,7 +207,7 @@ function getDailyPoint() {
         dataType: 'json',
         success: function (response) {
             console.log(response[0]);
-            $("#dailyTotal").text(response[0].valeur);
+            $("#dailyTotal").text(response[0].sum);
         },
         error: function () {
             console.log('failure');
