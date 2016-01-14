@@ -55,7 +55,7 @@ class Roulette extends CI_Controller
         $nbaction = 3 - $this->getNbAction($fbid);
         $resultDaily = $this->getDailyPoint($fbid);
 
-        $dailyTotal = empty($resultDaily[0]->valeur) ? 0 : $resultDaily[0]->valeur;
+        $dailyTotal = empty($resultDaily[0]->sum) ? 0 : $resultDaily[0]->sum;
         $data = [
             'fbId' => $fbid,
             'diff' => $diff,
