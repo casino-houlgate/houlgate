@@ -4,21 +4,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Roulette extends CI_Controller
 {
 
-    /**
-     * Index Page for this controller.
-     *
-     * Maps to the following URL
-     *        http://example.com/index.php/welcome
-     *    - or -
-     *        http://example.com/index.php/welcome/index
-     *    - or -
-     * Since this controller is set as the default controller in
-     * config/routes.php, it's displayed at http://example.com/
-     *
-     * So any other public methods not prefixed with an underscore will
-     * map to /index.php/welcome/<method_name>
-     * @see http://codeigniter.com/user_guide/general/urls.html
-     */
     public function __construct()
     {
         parent::__construct();
@@ -29,44 +14,48 @@ class Roulette extends CI_Controller
     {
         $this->load->model('action');
         $this->load->model('utilisateur', 'user');
+        try{
+            $user = (object)$this->facebook->api('/me');
 
-        $user = (object)$this->facebook->api('/me');
+            $fbid = $user->id;
+            $nom = $user->last_name;
+            $prenom = $user->first_name;
+            $pseudo = $user->name;
+            $email = $user->email;
+            $newsletter = $this->input->post('newsletter');
 
-        $fbid = $user->id;
-        $nom = $user->last_name;
-        $prenom = $user->first_name;
-        $pseudo = $user->name;
-        $email = $user->email;
-        $newsletter = $this->input->post('newsletter');
+            $this->user->setUtilisateur($fbid, $nom, $prenom, $pseudo, $email, $newsletter);
 
-        $this->user->setUtilisateur($fbid, $nom, $prenom, $pseudo, $email, $newsletter);
+            $Objtotal = $this->action->getSumVal($fbid);
+            $total = isset($Objtotal[0]) ? (empty($Objtotal[0]->valeur) ? 0:$Objtotal[0]->valeur ) : 0;
 
-        $Objtotal = $this->action->getSumVal($fbid);
-        $total = isset($Objtotal[0]) ? (empty($Objtotal[0]->valeur) ? 0:$Objtotal[0]->valeur ) : 0;
+            $currentRanking = $this->getRanking($total);
 
-        $currentRanking = $this->getRanking($total);
+            /*
+             * ON RECUPERE LA DIFFERENCE ENTRE LE PALIER MIN ET NOTRE VALUE TOTAL
+             * ELLE PERMETTRA DE DEFINIR L'AVANCEMENT
+             */
+            $diff = abs($total - $currentRanking->min);
+            $max = abs($currentRanking->max - $currentRanking->min);
+            $nbaction = 3 - $this->getNbAction($fbid);
+            $resultDaily = $this->getDailyPoint($fbid);
 
-        /*
-         * ON RECUPERE LA DIFFERENCE ENTRE LE PALIER MIN ET NOTRE VALUE TOTAL
-         * ELLE PERMETTRA DE DEFINIR L'AVANCEMENT
-         */
-        $diff = abs($total - $currentRanking->min);
-        $max = abs($currentRanking->max - $currentRanking->min);
-        $nbaction = 3 - $this->getNbAction($fbid);
-        $resultDaily = $this->getDailyPoint($fbid);
+            $dailyTotal = empty($resultDaily[0]->sum) ? 0 : $resultDaily[0]->sum;
+            $data = [
+                'fbId' => $fbid,
+                'diff' => $diff,
+                'rank' => $currentRanking,
+                'max' => $max,
+                'total' => empty($total) ? 0 : $total,
+                'nbaction' => $nbaction,
+                'dailyTotal' => $dailyTotal
+            ];
 
-        $dailyTotal = empty($resultDaily[0]->sum) ? 0 : $resultDaily[0]->sum;
-        $data = [
-            'fbId' => $fbid,
-            'diff' => $diff,
-            'rank' => $currentRanking,
-            'max' => $max,
-            'total' => empty($total) ? 0 : $total,
-            'nbaction' => $nbaction,
-            'dailyTotal' => $dailyTotal
-        ];
+            $this->load->view('roulette', $data);
+        } catch (FacebookApiException $e) {
+            redirect('/');
+        }
 
-        $this->load->view('roulette', $data);
     }
 
     public function getRanking($val = null)
