@@ -19,13 +19,13 @@
     <header>
         <nav>
             <ul>
-                <li class="menu_carte_li" id="li_gain"><a href="gains_houlgate.php" title="vos gains"
+                <li class="menu_carte_li" id="li_gain"><a href="<?=site_url('profit')?>" title="vos gains"
                                                           class="a_menu_principal">Vos gains</a></li>
-                <li class="menu_carte_li" id="li_evenement"><a href="#" title="Evenements" class="a_menu_principal">Nos
+                <li class="menu_carte_li" id="li_evenement"><a href="<?=site_url('event')?>" title="Evenements" class="a_menu_principal">Nos
                         évènements</a></li>
-                <li class="menu_carte_li" id="li_machine"><a href="sample/demo.html" title="machine a sous"
+                <li class="menu_carte_li" id="li_machine"><a href="<?=site_url('gambling')?>" title="machine a sous"
                                                              class="a_menu_principal">Machine à sous</a></li>
-                <li class="menu_carte_li" id="li_localisation"><a href="localisation.php" title="nous trouver"
+                <li class="menu_carte_li" id="li_localisation"><a href="<?=site_url('localisation')?>" title="nous trouver"
                                                                   class="a_menu_principal">Nous trouver</a></li>
             </ul>
     </header>
