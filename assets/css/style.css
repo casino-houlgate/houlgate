@@ -2,6 +2,9 @@
     width: 600px;
     height: 700px;
     margin: 0 auto;
+    font-size: 14px;
+    font-family: Sans-serif;
+    line-height: 20px;
     background-color: #e9eaed;
     text-align: center;
     background-image: url(../img/bg_rouge.jpg);
@@ -682,7 +685,7 @@ label {
     margin-left: -300px;
 }
 
-div#niv {
+div#current-niv {
     margin-left: 80px;
     position: absolute;
     margin-top: -430px;
@@ -708,7 +711,9 @@ progress {
     transform: rotate(-90deg);
     margin-left: -170px;
 }
-
+#dialog-message {
+    display:none;
+}
 #redbar::-moz-progress-bar {
     background-color: red;
 }
@@ -814,4 +819,60 @@ canvas#wheelcanvas {
 
 .menu_secondaire_li:hover {
     background-color: #B82E21;
+}
+.ui-dialog-osx {
+    -moz-border-radius: 0 0 8px 8px;
+    -webkit-border-radius: 0 0 8px 8px;
+    border-radius: 0 0 8px 8px; border-width: 0 8px 8px 8px;
+}
+/*
+
+.boule_jauge {
+    height: 45px;
+    position: relative;
+    right: 182px;
+    top: 71px;
+    width: 45px;
+}
+
+.niveau {
+    height: 100px;
+    position: relative;
+    right: 257px;
+    top: 227px;
+    width: 100px;
+}
+
+#progress {
+    margin-top: 7%;
+    width: 300px;
+}
+
+#submit {
+    margin: -17px auto 0 242px;
+}
+
+#contenu_page {
+    width: 100%;
+}
+*/
+
+#menu_secondaire {
+    float: left;
+    margin-left: 17%;
+    margin-top: 202px;
+    width: 100%;
+}
+
+.menu_secondaire_li {
+    background-color: #708780;
+    border: 1px solid #fff;
+    border-radius: 20px;
+    cursor: pointer;
+    list-style: outside none none;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    padding: 5px;
+    text-align: center;
+    width: 125px;
 }

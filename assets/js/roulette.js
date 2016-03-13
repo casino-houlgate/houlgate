@@ -1,4 +1,4 @@
-var colors = ["#2b2b2b", "#e0a617", "#2b2b2b", "#e0a617", "#2b2b2b", "#e0a617", "#2b2b2b", "#e0a617", "#3a5c25", "#e0a617", "#2b2b2b", "#e0a617"];
+var colors = ["#2b2b2b", "#e0a617", "#2b2b2b", "#e0a617", "#2b2b2b", "#e0a617", "#2b2b2b", "#e0a617", "#EB2B28", "#e0a617", "#2b2b2b", "#e0a617" ];
 var restaraunts = [17, 32, 15, 19, 4, 21, 2, 25, 0, 34, 6, 27];
 
 var startAngle = 0;
@@ -164,6 +164,7 @@ function getRanking(value) {
     var currProgress = $("#redbar").attr('value');
     var total = $("#total").attr('value');
     var progress = parseInt(currProgress) + parseInt(value);
+    var fbId = parseInt($("#fbId").attr('value'));
 
     if (progress > $("#redbar").attr('max')) {
 
@@ -189,8 +190,39 @@ function getRanking(value) {
         var barvalue = Math.abs(parseInt(currentRank.min) - realVal);
         $("#redbar").attr('value', barvalue);
         console.log(currentRank.id_rang);
-        $("#niv").text("Niv." + currentRank.id_rang);
+        $(".niv").text("Niv." + currentRank.id_rang);
         $("#redbar").attr('max', currentRank.max - currentRank.min);
+        $("#dialog-message").dialog({
+            modal: true,
+            draggable: false,
+            resizable: false,
+            show: 'blind',
+            hide: 'blind',
+            width: 400,
+            dialogClass: 'ui-dialog-osx',
+            buttons: {
+                "continuer": function () {
+                    $(this).dialog("close");
+                },
+                "Obtenir son cadeau": function () {
+                    $.ajax({
+                        type: "POST",
+                        url: 'roulette/getGift',
+                        data: {
+                            'fbid': fbId
+                        },
+                        dataType: 'json',
+                        success: function (response) {
+                            currentRank = response;
+                        },
+                        error: function () {
+                            console.log('failure');
+                        }
+                    });
+                    $(this).dialog("close");
+                }
+            }
+        });
     } else {
         $("#redbar").attr('value', parseInt(currProgress) + parseInt(value));
     }

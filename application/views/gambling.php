@@ -10,6 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link rel="stylesheet" href="<?= asset_url() ?>css/bootstrap.css">
     <link rel="stylesheet" href="<?= asset_url() ?>css/bootstrap-responsive.css">
     <link rel="stylesheet" href="<?= asset_url() ?>css/demo.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>

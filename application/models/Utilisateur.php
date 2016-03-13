@@ -22,6 +22,7 @@ class Utilisateur extends CI_Model
         if (empty($newsletter)) {
             $newsletter = 0;
         }
+
         $data = [
             'id_util' => $fbid,
             'nom' => $nom,

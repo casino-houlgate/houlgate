@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Localisation Casino</title>
     <link rel="stylesheet" href="<?= asset_url() ?>css/style.css" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
@@ -12,14 +13,33 @@
     <header>
         <nav class="menu_principal">
             <ul id="menu_carte">
-                <li class="menu_carte_li" id="li_gain"><a href="<?=site_url('profit')?>" title="vos gains"
-                                                          class="a_menu_principal">Vos gains</a></li>
-                <li class="menu_carte_li" id="li_evenement"><a href="<?=site_url('event')?>" title="Evenements"
-                                                               class="a_menu_principal">Nos évènements</a></li>
-                <li class="menu_carte_li" id="li_machine"><a href="<?=site_url('gambling')?>" title="machine a sous"
-                                                             class="a_menu_principal">Machine à sous</a></li>
-                <li class="menu_carte_li" id="li_localisation"><a href="<?=site_url('localisation')?>" title="nous trouver"
-                                                                  class="a_menu_principal">Nous trouver</a></li>
+                <li class="menu_carte_li" id="li_gain">
+                    <a href="<?= site_url('roulette') ?>" title="vos gains"
+                       class="a_menu_principal">
+                        Accueil
+                    </a>
+                </li>
+                <li class="menu_carte_li" id="li_evenement">
+                    <a href="<?= site_url('event') ?>"
+                       title="Evenements"
+                       class="a_menu_principal">
+                        Nos évènements
+                    </a>
+                </li>
+                <li class="menu_carte_li" id="li_machine">
+                    <a href="<?= site_url('gambling') ?>"
+                       title="machine a sous"
+                       class="a_menu_principal">
+                        Machine à sous
+                    </a>
+                </li>
+                <li class="menu_carte_li" id="li_localisation">
+                    <a href="<?= $logout_url ?>"
+                       title="nous trouver"
+                       class="a_menu_principal">
+                        Déconnexion
+                    </a>
+                </li>
             </ul>
         </nav>
     </header>
@@ -27,7 +47,8 @@
     <div id="profil_principal">
 
         <div id="profil-niveau">
-            <img src="<?= asset_url() ?>img/img-profil-parametre-perroquet-marin.jpg" alt="img profil parametre" height="125"
+            <img src="<?= asset_url() ?>img/img-profil-parametre-perroquet-marin.jpg" alt="img profil parametre"
+                 height="125"
                  width="140" id="img_profil" title="img profil parametre">
         </div>
 
@@ -43,32 +64,38 @@
     <div id="cadeau-profil">
         <div id="liste-cadeau">
             <ul id="liste_cadeau_ul">
-                <li class="cadeau_li"><img class="img_cadeau" src="<?= asset_url() ?>img//img_cadeau_gains.jpg" height="48" width="200"
+                <li class="cadeau_li"><img class="img_cadeau" src="<?= asset_url() ?>img//img_cadeau_gains.jpg"
+                                           height="48" width="200"
                                            alt="cadeau gains" title="cadeau gains"/><span
                         class="text_cadeau">120 Points</span><a class="obtenir_cadeau" href="#" title="cadeaux casino">Obetenir</a>
                 </li>
                 <br/><br/><br/><br/>
-                <li class="cadeau_li"><img class="img_cadeau" src="<?= asset_url() ?>img//img_cadeau_gains.jpg" height="48" width="200"
+                <li class="cadeau_li"><img class="img_cadeau" src="<?= asset_url() ?>img//img_cadeau_gains.jpg"
+                                           height="48" width="200"
                                            alt="cadeau gains" title="cadeau gains"/><span
                         class="text_cadeau">120 Points</span><a class="obtenir_cadeau" href="#" title="cadeaux casino">Obetenir</a>
                 </li>
                 <br/><br/><br/><br/>
-                <li class="cadeau_li"><img class="img_cadeau" src="<?= asset_url() ?>img//img_cadeau_gains.jpg" height="48" width="200"
+                <li class="cadeau_li"><img class="img_cadeau" src="<?= asset_url() ?>img//img_cadeau_gains.jpg"
+                                           height="48" width="200"
                                            alt="cadeau gains" title="cadeau gains"/><span
                         class="text_cadeau">120 Points</span><a class="obtenir_cadeau" href="#" title="cadeaux casino">Obetenir</a>
                 </li>
                 <br/><br/><br/><br/>
-                <li class="cadeau_li"><img class="img_cadeau" src="<?= asset_url() ?>img//img_cadeau_gains.jpg" height="48" width="200"
+                <li class="cadeau_li"><img class="img_cadeau" src="<?= asset_url() ?>img//img_cadeau_gains.jpg"
+                                           height="48" width="200"
                                            alt="cadeau gains" title="cadeau gains"/><span
                         class="text_cadeau">120 Points</span><a class="obtenir_cadeau" href="#" title="cadeaux casino">Obetenir</a>
                 </li>
                 <br/><br/><br/><br/>
-                <li class="cadeau_li"><img class="img_cadeau" src="<?= asset_url() ?>img//img_cadeau_gains.jpg" height="48" width="200"
+                <li class="cadeau_li"><img class="img_cadeau" src="<?= asset_url() ?>img//img_cadeau_gains.jpg"
+                                           height="48" width="200"
                                            alt="cadeau gains" title="cadeau gains"/><span
                         class="text_cadeau">120 Points</span><a class="obtenir_cadeau" href="#" title="cadeaux casino">Obetenir</a>
                 </li>
                 <br/><br/><br/><br/>
-                <li class="cadeau_li"><img class="img_cadeau" src="<?= asset_url() ?>img//img_cadeau_gains.jpg" height="48" width="200"
+                <li class="cadeau_li"><img class="img_cadeau" src="<?= asset_url() ?>img//img_cadeau_gains.jpg"
+                                           height="48" width="200"
                                            alt="cadeau gains" title="cadeau gains"/><span
                         class="text_cadeau">120 Points</span><a class="obtenir_cadeau" href="#" title="cadeaux casino">Obetenir</a>
                 </li>
@@ -82,7 +109,7 @@
                                                   target="_blank" title="casino">casino</a></li>
                 <li class="menu_secondaire_li"><a href="http://www.casino-houlgate.fr/restaurant/menu.php"
                                                   target="_blank" title="restaurant">restaurant</a></li>
-                <li class="menu_secondaire_li"><a href="<?=site_url('roulette')?>" title="Retour">Retour</a></li>
+                <li class="menu_secondaire_li"><a href="<?= site_url('roulette') ?>" title="Retour">Retour</a></li>
             </ul>
         </div>
     </div>

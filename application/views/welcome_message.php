@@ -13,6 +13,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <meta property="og:image" content="<?php echo asset_url() ?>img/bg_rouge.jpg"/>
     <link rel="stylesheet" href="<?php echo asset_url() ?>css/style.css" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 </head>
 <!--JAVASCRIPT-->
 <div id="fb-root"></div>
@@ -31,7 +32,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) {return;}
         js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/en_US/sdk.js";
+        js.src = "//connect.facebook.net/fr_FR/sdk.js";
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 </script>
@@ -62,6 +63,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </form>
     </section>
     <!-- Your like button code -->
+    <?php if (!@$user_profile):  // call var_dump($user_profile) to view all data ?>
     <div class="fb-like"
          data-href="<?php echo site_url() ?>"
          data-layout="standard"
@@ -69,6 +71,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
          data-show-faces="true"
          data-share="true">
     </div>
+    <?php endif; ?>
 </div>
 <script>
 

@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Event extends CI_Controller
+class Event extends MY_Controller
 {
     public function __construct()
     {
@@ -15,6 +15,6 @@ class Event extends CI_Controller
         $this->load->model('utilisateur', 'user');
 
 
-        $this->load->view('event');
+        $this->load->view('event', $this->data);
     }
 }

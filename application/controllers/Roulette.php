@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Roulette extends CI_Controller
+class Roulette extends MY_Controller
 {
 
     public function __construct()
@@ -14,7 +14,7 @@ class Roulette extends CI_Controller
     {
         $this->load->model('action');
         $this->load->model('utilisateur', 'user');
-        try{
+        try {
             $user = (object)$this->facebook->api('/me');
 
             $fbid = $user->id;
@@ -27,7 +27,7 @@ class Roulette extends CI_Controller
             $this->user->setUtilisateur($fbid, $nom, $prenom, $pseudo, $email, $newsletter);
 
             $Objtotal = $this->action->getSumVal($fbid);
-            $total = isset($Objtotal[0]) ? (empty($Objtotal[0]->valeur) ? 0:$Objtotal[0]->valeur ) : 0;
+            $total = isset($Objtotal[0]) ? (empty($Objtotal[0]->valeur) ? 0 : $Objtotal[0]->valeur) : 0;
 
             $currentRanking = $this->getRanking($total);
 
@@ -41,7 +41,8 @@ class Roulette extends CI_Controller
             $resultDaily = $this->getDailyPoint($fbid);
 
             $dailyTotal = empty($resultDaily[0]->sum) ? 0 : $resultDaily[0]->sum;
-            $data = [
+
+            $this->data += [
                 'fbId' => $fbid,
                 'diff' => $diff,
                 'rank' => $currentRanking,
@@ -51,7 +52,7 @@ class Roulette extends CI_Controller
                 'dailyTotal' => $dailyTotal
             ];
 
-            $this->load->view('roulette', $data);
+            $this->load->view('roulette', $this->data);
         } catch (FacebookApiException $e) {
             redirect('/');
         }
@@ -101,6 +102,46 @@ class Roulette extends CI_Controller
             echo json_encode("done");
         } else {
             echo json_encode(['error' => 'Vous n\'avez plus de quota d\'action']);
+        }
+    }
+
+    public function getGift()
+    {
+        if ($this->input->is_ajax_request()) {
+            $config = Array(
+                'protocol' => 'smtp',
+                'smtp_host' => 'ssl://smtp.gmail.com',
+                'smtp_port' => 465,
+                'smtp_user' => 'mrakotomizao@gmail.com',
+                'smtp_pass' => 'Ouist24!',
+                'mailtype' => 'html',
+                'charset' => 'iso-8859-1'
+            );
+            $this->load->library('email', $config);
+            $this->email->set_newline("\r\n");
+
+            $this->load->model('action', 'action');
+
+            $fbid = $this->input->post('fbid');
+
+
+            //STEP 1 : Send notification for casino that a user choose a gift
+
+            $this->email->from('your@example.com', 'Moise RAKOTOMIZAO');
+            $this->email->to('mrakotomizao@gmail.com');
+
+            $this->email->subject('Email Test');
+            $this->email->message('Testing the email class.');
+
+            $this->email->send();
+
+            /*echo $this->email->print_debugger();*/
+
+            //STEP 2 : Set user point to 0
+            $this->action->updateActions($fbid);
+
+        } else {
+            exit('No direct script access allowed');
         }
     }
 

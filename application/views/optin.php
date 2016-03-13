@@ -5,6 +5,7 @@
     <title>Application Casino</title>
     <link rel="stylesheet" href="<?php echo asset_url() ?>css/style.css" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 </head>
 
 <body>

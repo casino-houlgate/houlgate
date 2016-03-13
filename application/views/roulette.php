@@ -4,11 +4,15 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="<?php echo asset_url() ?>css/style.css" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
     <script src="<?= asset_url() ?>js/roulette.js"></script>
     <script src="<?= asset_url() ?>js/funcs.js"></script>
     <!--[if IE]>
     <script type="text/javascript" src="<?php echo asset_url() ?>js/roulette.js?>"></script>
+
     <![endif]-->
     <title>casino</title>
 </head>
@@ -19,15 +23,28 @@
     <header>
         <nav>
             <ul>
-                <li class="menu_carte_li" id="li_gain"><a href="<?=site_url('profit')?>" title="vos gains"
-                                                          class="a_menu_principal">Vos gains</a></li>
-                <li class="menu_carte_li" id="li_evenement"><a href="<?=site_url('event')?>" title="Evenements" class="a_menu_principal">Nos
-                        évènements</a></li>
-                <li class="menu_carte_li" id="li_machine"><a href="<?=site_url('gambling')?>" title="machine a sous"
-                                                             class="a_menu_principal">Machine à sous</a></li>
-                <li class="menu_carte_li" id="li_localisation"><a href="<?=site_url('localisation')?>" title="nous trouver"
-                                                                  class="a_menu_principal">Nous trouver</a></li>
+                <li class="menu_carte_li" id="li_gain">
+                    <a href="<?= site_url('roulette') ?>" title="vos gains"
+                       class="a_menu_principal">Accueil</a></li>
+                <li class="menu_carte_li" id="li_evenement">
+                    <a href="<?= site_url('event') ?>" title="Evenements"
+                       class="a_menu_principal">Nos
+                        évènements</a>
+                </li>
+                <li class="menu_carte_li" id="li_machine">
+                    <a href="<?= site_url('gambling') ?>"
+                       title="machine a sous"
+                       class="a_menu_principal">
+                        Machine à sous
+                    </a>
+                </li>
+                <li class="menu_carte_li" id="li_localisation">
+                    <a href="<?= $logout_url ?>"
+                       title="nous trouver"
+                       class="a_menu_principal">Déconnexion</a>
+                </li>
             </ul>
+        </nav>
     </header>
     <!-- Jauge -->
 
@@ -43,14 +60,26 @@
             </div>
             <input id="submit" class="btn" type="button" value="JOUER" onClick="spin();"/>
         </div>
-        <div id="niv">Niv.<?php echo($rank->id_rang) ?></div>
+        <div id="current-niv" class="niv">Niv.<?php echo($rank->id_rang) ?></div>
         <div id="colonne_jauge">
             <progress max="<?= $max ?>" value="<?= $diff ?>" form="form-id" id="redbar"></progress>
+            <!--<img class="boule_jauge" src="<?php /*asset_url() */?>img/niveau-boule.png">
+            <img class="niveau" src="<?php /*asset_url() */?>img/niveau-cache.png">-->
             <input type="hidden" name="total" id="total" value="<?= $total ?>">
             <input type="hidden" name="fbId" id="fbId" value="<?= $fbId ?>">
         </div>
     </div>
 
+</div>
+<div id="dialog-message" title="Félicitations !">
+    <span class="ui-state-default">
+        <span class="ui-icon ui-icon-info" style="float:left; margin:0 7px 0 0;"></span>
+    </span>
+    <div style="margin-left: 23px;">
+        <p>
+            Vous êtes arrivé au niveau <span class="niv"></span>
+        </p>
+    </div>
 </div>
 </body>
 </html>

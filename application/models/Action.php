@@ -38,19 +38,19 @@ class Action extends CI_Model
 
     public function getDailyAction($id)
     {
-        /*$condition = [
+        $condition = [
             'id_util' => $id
         ];
         $condition_like = [
-            'date::TEXT' =>date('Y-m-d')
-        ];*/
-        $query = "SELECT * FROM actions WHERE id_util = $id AND date::TEXT LIKE '%" . date('Y-m-d') . "%'";
-        $request = $this->db->query($query)->num_rows();
-        /*$request = $this->db->select('*')
+            'date' => date('Y-m-d')
+        ];
+        /*$query = "SELECT * FROM actions WHERE id_util = $id AND date::TEXT LIKE '%" . date('Y-m-d') . "%'";
+        $request = $this->db->query($query)->num_rows();*/
+        $request = $this->db->select('*')
             ->where($condition)
             ->like($condition_like)
             ->get($this->tableName)
-            ->num_rows();*/
+            ->num_rows();
 
         return $request;
     }
@@ -58,22 +58,31 @@ class Action extends CI_Model
     //FONCTION QUI RECUPERE EN BDD LE NOMBRE DE POINT DU JOUR
     public function getDailyPoint($id)
     {
-/*        $condition = [
+        $condition = [
             'id_util' => $id,
         ];
         $condition_like = [
             'date' => date('Y-m-d')
         ];
 
-        $daillySum = $this->db->select_sum('valeur')
+        $request = $this->db->select_sum('valeur')
             ->where($condition)
             ->like($condition_like)
             ->get($this->tableName)
-            ->result();*/
-        $query = "SELECT SUM(valeur) FROM actions WHERE id_util = $id AND date::TEXT LIKE '%" . date('Y-m-d') . "%'";
-        $request = $this->db->query($query)->result();
+            ->result();
+        /*        $query = "SELECT SUM(valeur) FROM actions WHERE id_util = $id AND date::TEXT LIKE '%" . date('Y-m-d') . "%'";
+                $request = $this->db->query($query)->result();*/
 
 
         return $request;
+    }
+
+    public function updateActions($fbid)
+    {
+        $data = [
+            'valeur' => 0
+        ];
+
+        $this->db->update($this->tableName, $data, "id_util= $fbid");
     }
 }
