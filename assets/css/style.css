@@ -714,6 +714,7 @@ progress {
 #dialog-message {
     display:none;
 }
+
 #redbar::-moz-progress-bar {
     background-color: red;
 }
