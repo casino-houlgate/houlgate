@@ -38,19 +38,19 @@ class Action extends CI_Model
 
     public function getDailyAction($id)
     {
-        $condition = [
+        /*$condition = [
             'id_util' => $id
         ];
         $condition_like = [
             'date' => date('Y-m-d')
-        ];
-        /*$query = "SELECT * FROM actions WHERE id_util = $id AND date::TEXT LIKE '%" . date('Y-m-d') . "%'";
-        $request = $this->db->query($query)->num_rows();*/
-        $request = $this->db->select('*')
+        ];*/
+        $query = "SELECT * FROM actions WHERE id_util = $id AND date::TEXT LIKE '%" . date('Y-m-d') . "%'";
+        $request = $this->db->query($query)->num_rows();
+        /*$request = $this->db->select('*')
             ->where($condition)
             ->like($condition_like)
             ->get($this->tableName)
-            ->num_rows();
+            ->num_rows();*/
 
         return $request;
     }
